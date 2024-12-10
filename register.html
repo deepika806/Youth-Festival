@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #4CAF50, #FF5733);
+        }
+        
+        .container {
+            display: flex;
+            flex-wrap: wrap; /* Allow wrapping of boxes */
+            gap: 30px;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .box {
+            width: 320px;
+            height: 220px;
+            background: rgba(255, 255, 255, 0.15);
+            color: #180d24;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            font-weight: 600;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            cursor: pointer;
+        }
+
+        .box:hover {
+            transform: scale(1.08);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .university {
+            background: linear-gradient(135deg, #dbbb77, #5a825c);
+        }
+
+        .individual {
+            background: linear-gradient(135deg, #e57f68, #d3cac7);
+        }
+
+        .manager {
+            background: linear-gradient(135deg, #839fbd, #a9d769); /* Blue gradient for the manager box */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="box university" onclick="window.location.href='index1.html'">
+            University Registration
+        </div>
+        <div class="box individual" onclick="window.location.href='eligibility.html'">
+            Participants Registration
+        </div>
+        <div class="box manager" onclick="window.location.href='Manager_Reg.html'">
+            Team Managers / Professional Accompanist
+        </div>
+    </div>
+
+</body>
+</html>

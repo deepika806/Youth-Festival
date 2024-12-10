@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Registration - Youth Festival 2024</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>   
+        /* Loading Spinner Styling */
+        #loading-spinner {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+        }
+        label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+        #loading-spinner div {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #ccc;
+            border-top-color: #333;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            
+        }
+    </style>
+</head>
+
+
+<body>
+    <script>
+        function calculateFees() {
+            const participants = document.getElementById('participants').value;
+            const feesPerParticipant = 3000;
+            const totalFees = participants * feesPerParticipant;
+            document.getElementById('fees').innerText = Total Fees: ₹${totalFees};
+        }
+
+        function checkPaymentNo() {
+            const paymentNoField = document.getElementById('paymentno').value;
+            const otherFields = document.querySelectorAll('.team-members input, .contact-info textarea, .travel-info input, button[type="submit"]');
+
+            if (paymentNoField) {
+                otherFields.forEach(field => field.disabled = false);
+            } else {
+                otherFields.forEach(field => field.disabled = true);
+            }
+        }
+
+        function encodeImageFileAsURL(element) {
+            const file = element.files[0];
+            const reader = new FileReader();
+            reader.onloadend = function () {
+                document.getElementById('payment_receipt_base64').value = reader.result.split(',')[1]; // Get base64 part
+            }
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+
+<nav class="navbar">
+    <ul>
+        <li><a href="index.html">home</a></li>
+        <li><a href="schedule.html">Schedule</a></li>
+        <li><a href="event.html">Events</a></li>
+        <li><a href="sponsors.html">Sponsors</a></li>
+        <li><a href="message.html">Message</a></li>
+        <li><a href="invitation.html">Invitation</a></li>
+        <li><a href="rules.html">Regulations</a></li>
+        <li><a href="questions.html">FAQs</a></li>
+    </ul>
+</nav>
+
+    <div class="container">
+        <h1>Team Registration Form</h1>
+        <form method="POST" name="google-sheet" enctype="multipart/form-data">
+            <!-- University Name and Participant Count -->
+            <div class="form-group">
+                <label for="university">Name of the University:*</label>
+                <select id="university" name="university" required>
+                    <option value="">Select a University</option>
+                    <option value="A K S University, Sherganj, Panna Road, Satna 485001,(MP)">A K S University, Sherganj, Panna Road, Satna 485001,(MP)</option>
+                    <option value="Academy of Scientific and Innovative Research,CSIR-Human Resource Devlopment Centre, Sector – 19, Kamla Nehru Nagar, Ghaziabad- 201202 (UP)">Academy of Scientific and Innovative Research,CSIR-Human Resource Devlopment Centre, Sector – 19, Kamla Nehru Nagar, Ghaziabad- 201202 (UP)</option>
+                    <option value="Aligarh Muslim University, Administrative Building, Aligarh 202002 (UP)">Aligarh Muslim University, Administrative Building, Aligarh 202002 (UP)</option>
+                    <option value="Amity University Uttar Pradesh,Amity University Campus,Sector - 125 ,NOIDA 201 313,(UP)">Amity University Uttar Pradesh,Amity University Campus,Sector - 125 ,NOIDA 201 313,(UP)</option>
+                    <option value="Amity University, Gwalior, Maharajpura (Opposite Airport),Gwalior 474 005,Madhya Pradesh">Amity University, Gwalior, Maharajpura (Opposite Airport),Gwalior 474 005,Madhya Pradesh</option>
+                    <option value="Atal Bihari Vajpai Hindi Vishwavidyalaya,MP Bhoj Open University Campus,Kolar Road,Bhopal – 462 002 (MP)">Atal Bihari Vajpai Hindi Vishwavidyalaya,MP Bhoj Open University Campus,Kolar Road,Bhopal – 462 002 (MP)</option>
+                    <option value="Atal Bihari Vajpai Indian Instt.of Information Technology and Management,Morena Link Road (NH – 92) Gwalior 474 015 (MP)">Atal Bihari Vajpai Indian Instt.of Information Technology and Management,Morena Link Road (NH – 92) Gwalior 474 015 (MP)</option>
+                    <option value="Avantika University,Vishwanathpuram,Lekoda Village, Ujjain-456006, M.P">Avantika University,Vishwanathpuram,Lekoda Village, Ujjain-456006, M.P</option>
+                    <option value="Awadhesh Pratap Singh University,Sirmaure Road,Rewa 486 003 ,(MP)">Awadhesh Pratap Singh University,Sirmaure Road,Rewa 486 003 ,(MP)</option>
+                    <option value="Babasaheb Bhimrao Ambedkar University,Vidya Vihar, Rae-Bareli Road,Lucknow 226 025 (UP)">Babasaheb Bhimrao Ambedkar University,Vidya Vihar, Rae-Bareli Road,Lucknow 226 025 (UP)</option>
+                    <option value="Babu Banarasi Das University, BBD City, Ayodhya Road, Chinhut, Lucknow-226028">Babu Banarasi Das University, BBD City, Ayodhya Road, Chinhut, Lucknow-226028</option>
+                    <option value="Banaras Hindu University (Institution of Eminence Deemed to be University),Varanasi 221 005  ,(UP)">Banaras Hindu University (Institution of Eminence Deemed to be University),Varanasi 221 005  ,(UP)</option>
+                    <option value="Bareilly International University, Rohilkhand Medical College Campus, Pilibhit By Paas Road,Bareilly-243006, Uttar Pradesh">Bareilly International University, Rohilkhand Medical College Campus, Pilibhit By Paas Road,Bareilly-243006, Uttar Pradesh</option>
+                    <option value="Barkatullah University,Hoshangabad Road,Bhopal 462 026  (MP)">Barkatullah University,Hoshangabad Road,Bhopal 462 026  (MP)</option>
+                    <option value="Bennett University,Plot No: 8-11, Tech Zone II, Greater Noida,Gautam Budh Nagar-201310,Uttar Pradesh">Bennett University,Plot No: 8-11, Tech Zone II, Greater Noida,Gautam Budh Nagar-201310,Uttar Pradesh</option>
+                    <option value="Bhatkhande Sanskriti Vishwavidyalaya,  1-Kaiserbagh, Lucknow, UttarPradesh-226001">Bhatkhande Sanskriti Vishwavidyalaya, 1-Kaiserbagh, Lucknow, UttarPradesh-226001</option>
+                    <option value="Bundelkhand University,Kanpur Road,Jhansi 284 128 ,(UP)">Bundelkhand University,Kanpur Road,Jhansi 284 128 ,(UP)</option>
+                    <option value="Central Institute of Higher Tibetan Studies,Mawaiya, Sarnath,Varanasi 221 007 (UP)">Central Institute of Higher Tibetan Studies,Mawaiya, Sarnath,Varanasi 221 007 (UP)</option>
+                    <option value="Chandra Shekhar Azad University of Agriculture & Technology, Nawabganj,Kanpur 208 002 (UP)">Chandra Shekhar Azad University of Agriculture & Technology, Nawabganj,Kanpur 208 002 (UP)</option>
+                    <option value="Chatrapati Shahu Ji Maharaj University, Kalyanpur, Kanpur 208 024  (UP)">Chatrapati Shahu Ji Maharaj University, Kalyanpur, Kanpur 208 024  (UP)</option>
+                    <option value="Chaudhary Charan Singh University,Meerut 250 005 ,(UP)">Chaudhary Charan Singh University,Meerut 250 005 ,(UP)</option>
+                    <option value="Dayalbagh Educational Institute,Dayalbagh,Agra 282 005   (UP)">Dayalbagh Educational Institute,Dayalbagh,Agra 282 005   (UP)</option>
+                    <option value="Deen Dayal Upadhaya Gorakhpur University,Gorakhpur 273 009  (UP)">Deen Dayal Upadhaya Gorakhpur University,Gorakhpur 273 009  (UP)</option>
+                    <option value="Devi Ahilya Vishwavidyalaya, Nalanda Parisar, 165, R N Tagore Marg, Indore 452 001 (MP)">Devi Ahilya Vishwavidyalaya, Nalanda Parisar, 165, R N Tagore Marg, Indore 452 001 (MP)</option>
+                    <option value="Dr A P J Abdul Kalam Technical University,Sector-11, Jankipuram Extension,Lucknow 226 031 (UP)">Dr A P J Abdul Kalam Technical University,Sector-11, Jankipuram Extension,Lucknow 226 031 (UP)</option>
+                    <option value="Dr Shakuntala Mishra National Rehabilitation University,Mohaan Road, Lucknow 226 017  (UP)">Dr Shakuntala Mishra National Rehabilitation University,Mohaan Road, Lucknow 226 017  (UP)</option>
+                    <option value="Dr. A P J Abdul Kalam University,Indore-Dewas Bypass Road,Village- Arandia,Indore- 452016,Madhya Pradesh">Dr. A P J Abdul Kalam University,Indore-Dewas Bypass Road,Village- Arandia,Indore- 452016,Madhya Pradesh</option>
+                    <option value="Dr. Bhim Rao Ambedkar University, Paliwal Park, Agra 282 004 (UP)">Dr. Bhim Rao Ambedkar University, Paliwal Park, Agra 282 004 (UP)</option>
+                    <option value="Dr. C.V. Raman University,Khandwa-Indore Road,Post Chhaigaon Makhan,Khandwa">Dr. C.V. Raman University,Khandwa-Indore Road,Post Chhaigaon Makhan,Khandwa</option>
+                    <option value="Dr. Harisingh Gour Vishwavidyalaya, Sagar 470 003 (MP)">Dr. Harisingh Gour Vishwavidyalaya, Sagar 470 003 (MP)</option>
+                    <option value="Dr. Ram Manohar Lohia Avadh University,Allahabad Road,Ayodhya 224 001 (UP)">Dr. Ram Manohar Lohia Avadh University,Allahabad Road,Ayodhya 224 001 (UP)</option>
+                    <option value="Dr. Ram Manohar Lohiya National Law University,Sector D-1,L.D.A. Kanpur Road Scheme,Aashiana, Lucknow 226012  (UP)">Dr. Ram Manohar Lohiya National Law University,Sector D-1,L.D.A. Kanpur Road Scheme,Aashiana, Lucknow 226012  (UP)</option>
+                    <option value="G H Raisoni University,Gram Mouja Dhoda Borgaon,Saikheda, Tehsil Saunsar,Dist. Chhindwara -480 106 (MP)">G H Raisoni University,Gram Mouja Dhoda Borgaon,Saikheda, Tehsil Saunsar,Dist. Chhindwara -480 106 (MP)</option>
+                    <option value="G L A University,17 KM Stone (NH-2),Delhi-Mathura Road,PO : Chaumuhan,Mathura – 281 406  (UP)">G L A University,17 KM Stone (NH-2),Delhi-Mathura Road,PO : Chaumuhan,Mathura – 281 406  (UP)</option>
+                    <option value="Galgotias University,Plot Number 2, Sector 17A,Yamuna Expressway,Greater Noida 203 201,Dist.Gautam Budh Nagar (UP)">Galgotias University,Plot Number 2, Sector 17A,Yamuna Expressway,Greater Noida 203 201,Dist.Gautam Budh Nagar (UP)</option>
+                    <option value="Gautam Buddha University,Yamuna Expressway,Greater Noida  201312,Dist. Gautam Budh Nagar (UP)">Gautam Buddha University,Yamuna Expressway,Greater Noida  201312,Dist. Gautam Budh Nagar (UP)</option>
+                    <option value="Glocal University,Delhi-Yamunatri Marg,Mirzapur Pole,Dist. Saharanpur 247 121 (UP)">Glocal University,Delhi-Yamunatri Marg,Mirzapur Pole,Dist. Saharanpur 247 121 (UP)</option>
+                    <option value="I F T M University,Lodhipur Rajput,Delhi Road (NH-24),Moradabad 244102 (UP)">I F T M University,Lodhipur Rajput,Delhi Road (NH-24),Moradabad 244102 (UP)</option>
+                    <option value="I I M T University, "O" Pocket, Mawana Road, Gangar Nagar, Meerut (U.P)">I I M T University, "O" Pocket, Mawana Road, Gangar Nagar, Meerut (U.P)</option>
+                    <option value="Indian Institute of Information Technology, Devghat, Jhalwa,Allahabad 211015 (UP)">Indian Institute of Information Technology, Devghat, Jhalwa,Allahabad 211015 (UP)</option>
+                    <option value="Indian Institute of Science Education and Research Bhopal,Bhopal Bypass Road, Bhauri,Bhopal 462 066 (MP)">Indian Institute of Science Education and Research Bhopal,Bhopal Bypass Road, Bhauri,Bhopal 462 066 (MP)</option>
+                    <option value="Indian Institute of Technology Kanpur,P O :  IIT Kanpur,Kanpur 208 016 (UP)">Indian Institute of Technology Kanpur,P O :  IIT Kanpur,Kanpur 208 016 (UP)</option>
+                    <option value="Indian Institute of Technology Varanasi, (Banaras Hindu University),Varanasi (UP) 221 005">Indian Institute of Technology Varanasi, (Banaras Hindu University),Varanasi (UP) 221 005</option>
+                    <option value="Indian Veterinary Research Institute,Izatnagar 243 122 ,(UP)">Indian Veterinary Research Institute,Izatnagar 243 122 ,(UP)</option>
+                    <option value="Indira Gandhi National Tribal University,Vill - Lalpur,Amarkantak 484 887,Dist.  Anuppur   (MP)">Indira Gandhi National Tribal University,Vill - Lalpur,Amarkantak 484 887,Dist.  Anuppur   (MP)</option>
+                    <option value="Integral University,Dasauli,Kursi Road ,Lucknow – 226026 (UP)">Integral University,Dasauli,Kursi Road ,Lucknow – 226026 (UP)</option>
+                    <option value="Invertis University,Invertis Village,National Highway 24,Bareilly 243123 (UP)">Invertis University,Invertis Village,National Highway 24,Bareilly 243123 (UP)</option>
+                    <option value="ITM University, Gwalior,AH-43, Bypass, Turari,Jhansi Road,Gwalior 475 001 (MP)">ITM University, Gwalior,AH-43, Bypass, Turari,Jhansi Road,Gwalior 475 001 (MP)</option>
+                    <option value="J.S. University, Shikohabad, 5 Km Milestone, Mainpuri Road, Shikoh abad Uttar Pradesh Pin Code-283135">J.S. University, Shikohabad, 5 Km Milestone, Mainpuri Road, Shikohabad Uttar Pradesh Pin Code-283135</option>
+                    <option value="Jagadguru Rambhadracharya Handicapped University,Chtirakoot  210 204  (UP)">Jagadguru Rambhadracharya Handicapped University,Chtirakoot  210 204  (UP)</option>
+                    <option value="Jagran Lakecity University, JLU Campus, Mugaliachap, Bhopal 462 044 (MP)">Jagran Lakecity University, JLU Campus, Mugaliachap, Bhopal 462 044 (MP)</option>
+                    <option value="Jannayak Chandrashekhar University,Basantput, Ballia-277001,Uttar Pradesh">Jannayak Chandrashekhar University,Basantput, Ballia-277001,Uttar Pradesh</option>
+                    <option value="Jaypee Institute of Information Technology,A-10, Sector-62, Noida  201 309 (UP)">Jaypee Institute of Information Technology,A-10, Sector-62, Noida  201 309 (UP)</option>
+                    <option value="Jaypee University of Engineering and Technology,AB Road, Raghogarh,District Guna,(MP) 473 226">Jaypee University of Engineering and Technology,AB Road, Raghogarh,District Guna,(MP) 473 226</option>
+                    <option value="Jiwaji University, Gwalior 474 011 (MP)">Jiwaji University, Gwalior 474 011 (MP)</option>
+                    <option value="K.M. (Krishna Mohan) University (Private University), Pali Dungra, Sonkh Road, Mathura - 281123">K.M. (Krishna Mohan) University (Private University), Pali Dungra, Sonkh Road, Mathura - 281123</option>
+                    <option value="Khwaja Moinuddin Language University(Formerly Khwaja Moinuddin Chishti Urdu, Arabi-Farsi University), Sitapur-Hardoi Bypass Road,Lucknow 226 013  (UP)">Khwaja Moinuddin Language University(Formerly Khwaja Moinuddin Chishti Urdu, Arabi-Farsi University), Sitapur-Hardoi Bypass Road,Lucknow 226 013  (UP)</option>
+                    <option value="Lakshmibai National Institute of Physical Education,Shakti Nagar, Rececourse Road,Gwalior 474 002 (MP)">Lakshmibai National Institute of Physical Education,Shakti Nagar, Rececourse Road,Gwalior 474 002 (MP)</option>
+                    <option value="LNCT University,JK Hospital & LN Medical Campus, Kolar Road, Bhopal-462042,Madhya Pradesh">LNCT University,JK Hospital & LN Medical Campus, Kolar Road, Bhopal-462042,Madhya Pradesh</option>
+                    <option value="Maa Shakumbhari University, Punwarka, Saharanpur, Uttar Pradesh">Maa Shakumbhari University, Punwarka, Saharanpur, Uttar Pradesh</option>
+                    <option value="Madan Mohan Malaviya University of Technology,Deoria Road,Gorakhpur 273 010 (UP)">Madan Mohan Malaviya University of Technology,Deoria Road,Gorakhpur 273 010 (UP)</option>
+                    <option value="Madhya Pradesh Bhoj (Open) University,Kolar road (Raja Bhoj Marg),Damkheda, Chunabhatti,Bhopal 462 016 (MP)">Madhya Pradesh Bhoj (Open) University,Kolar road (Raja Bhoj Marg),Damkheda, Chunabhatti,Bhopal 462 016 (MP)</option>
+                    <option value="Madhyanchal Professional University,Patel Group Campus Ratibad,Tahsil-Huzur,Bhopal (M.P)">Madhyanchal Professional University,Patel Group Campus Ratibad,Tahsil-Huzur,Bhopal (M.P)</option>
+                    <option value="Maharaja Chhatrasal Bundelkhand University,Panna Road,Government Maharaja CollegeCampus,Chhattarpur 471 001 (MP)">Maharaja Chhatrasal Bundelkhand University,Panna Road,Government Maharaja CollegeCampus,Chhattarpur 471 001 (MP)</option>
+                    <option value="Maharshi Mahesh Yogi Vedic Vishwavidyalaya, Village - Karoundi  ,P O : Umariyapan  , District Katni  (MP) 483 332">Maharshi Mahesh Yogi Vedic Vishwavidyalaya, Village - Karoundi  ,P O : Umariyapan  , District Katni  (MP) 483 332</option>
+                    <option value="Maharshi Panini Sanskrit Evam Vedic University, Dewas Road, Ujjain 456 010  (MP)">Maharshi Panini Sanskrit Evam Vedic University, Dewas Road, Ujjain 456 010  (MP)</option>
+                    <option value="Mahatma Gandhi Chitrakoot Gramoday  Vishwavidyalya,Chitrakoot  485 334,District Satna (MP)">Mahatma Gandhi Chitrakoot Gramoday  Vishwavidyalya,Chitrakoot  485 334,District Satna (MP)</option>
+                    <option value="Mahatma Gandhi Kashi Vidyapith , Varanasi 221 002 (UP)">Mahatma Gandhi Kashi Vidyapith , Varanasi 221 002 (UP)</option>
+                    <option value="Mahatma Jyotiba Phule  Rohilkhand University,Pilibhit Byepass Road,Bareily 243 006 (UP)">Mahatma Jyotiba Phule  Rohilkhand University,Pilibhit Byepass Road,Bareily 243 006 (UP)</option>
+                    <option value="Makhanlal Chaturvedi National University of Journalism and Communication,B-38, Bikas Bhawan,M P Nagar,Bhopal 462 011, M.P">Makhanlal Chaturvedi National University of Journalism and Communication,B-38, Bikas Bhawan,M P Nagar,Bhopal 462 011, M.P</option>
+                    <option value="Malwanchal University, Indore, Madhya Pradesh">Malwanchal University, Indore, Madhya Pradesh</option>
+                    <option value="Mandsaur University, By Pass Square, Revas Devda Road, S.H. - 31, Mandsaur (M.P) - 458001">Mandsaur University, By Pass Square, Revas Devda Road, S.H. - 31, Mandsaur (M.P) - 458001</option>
+                    <option value="Mangalayatan University, 33rd Milestone, Aligarh-Mathura Highway, P.O. Beswan, Aligarh-202146 (UP)">Mangalayatan University, 33rd Milestone, Aligarh-Mathura Highway, P.O. Beswan, Aligarh-202146 (UP)</option>
+                    <option value="Mangalayatan University,NH-30, Near Sharda Devi Mandir, RICHAI, Barela, Jabalpur, Madhya Pradesh-483001">Mangalayatan University,NH-30, Near Sharda Devi Mandir, RICHAI, Barela, Jabalpur, Madhya Pradesh-483001</option>
+                    <option value="Mansarovar Global University,Bilkisganj, Sehore,(Madhya Pradesh) – 466111">Mansarovar Global University,Bilkisganj, Sehore,(Madhya Pradesh) – 466111</option>
+                    <option value="Maulana Azad National Institute of Technology,Near Mata Mandir,T T Nagar,Bhopal 462 003 (MP)">Maulana Azad National Institute of Technology,Near Mata Mandir,T T Nagar,Bhopal 462 003 (MP)</option>
+                    <option value="Medi-Caps University, Indore">Medi-Caps University, Indore</option>
+                    <option value="Mohammad Ali Jauhar University, Jauhar Nagar, Rampur 244901 (UP)">Mohammad Ali Jauhar University, Jauhar Nagar, Rampur 244901 (UP)</option>
+                    <option value="Monad University,NH-24, Delhi-Hapur Road,Vill : Kastla Kashmabad,PO : Pilkhuwa,Dist. Hapur 245 101 (UP)">Monad University,NH-24, Delhi-Hapur Road,Vill : Kastla Kashmabad,PO : Pilkhuwa,Dist. Hapur 245 101 (UP)</option>
+                    <option value="Motilal Nehru National Institute of Technology, Allahabad 211004 (UP)">Motilal Nehru National Institute of Technology, Allahabad 211004 (UP)</option>
+                    <option value="Narendra Deva University of  Agriculture & Technology, Narendra Nagar, Ayodhya 224 229 (UP)">Narendra Deva University of  Agriculture & Technology, Narendra Nagar, Ayodhya 224 229 (UP)</option>
+                    <option value="National Institute of Design, Sanchi Block, Residential Area, Acharpura, Eint Khedi, P.O - Arwaliya, Madhya Pradesh, Bhopal - 462 038">National Institute of Design, Sanchi Block, Residential Area, Acharpura, Eint Khedi, P.O - Arwaliya, Madhya Pradesh, Bhopal - 462 038</option>
+                    <option value="National Institute of Pharmaceutical and Research Raebareli, Bijnor-Sisendi Road, Sarojini Nagar, Near CRPF Base Camp, Lucknow (UP) - 226002">National Institute of Pharmaceutical and Research Raebareli, Bijnor-Sisendi Road, Sarojini Nagar, Near CRPF Base Camp, Lucknow (UP) - 226002</option>
+                    <option value="National Law Institute University,Kerwa Dam Road, Bhopal 462 044 (MP)">National Law Institute University,Kerwa Dam Road, Bhopal 462 044 (MP)</option>
+                    <option value="Nehru Gram Bharati University, Kotwa-Jamunipur-Dubawal,Allahabad  221 505 (UP)">Nehru Gram Bharati University, Kotwa-Jamunipur-Dubawal,Allahabad  221 505 (UP)</option>
+                    <option value="NOIDA International University,Plot No.1, Sector 17-A,Yamuna Express Way,Opp. Formula One Track,Greater Noida,Dist. Gautam Budh Nagar 201306 (UP)">NOIDA International University,Plot No.1, Sector 17-A,Yamuna Express Way,Opp. Formula One Track,Greater Noida,Dist. Gautam Budh Nagar 201306 (UP)</option>
+                    <option value="Oriental University,Opp Revati Range Gate No 1,PO : Aurobindo, Sanwer Road,Indore  453 555 ,(MP)">Oriental University,Opp Revati Range Gate No 1,PO : Aurobindo, Sanwer Road,Indore  453 555 ,(MP)</option>
+                    <option value="Pandit Dwarka Prasad Mishra Indian Institute of InformationTechnology, Design & Manufacturing,Dumna Airport Road,PO : Khamaria,Jabalpur 482 005 (MP)">Pandit Dwarka Prasad Mishra Indian Institute of InformationTechnology, Design & Manufacturing,Dumna Airport Road,PO : Khamaria,Jabalpur 482 005 (MP)</option>
+                    <option value="Pandit S. N. Shukla University,Near Congress Bhavan, Gharoulla Mohalla,Distt- Shahdol, Shahdol-484001, Madhya Pradesh">Pandit S. N. Shukla University,Near Congress Bhavan, Gharoulla Mohalla,Distt- Shahdol, Shahdol-484001, Madhya Pradesh</option>
+                    <option value="People’s University, Bhanpur,Bhopal 462 037,(MP)">People’s University, Bhanpur,Bhopal 462 037,(MP)</option>
+                    <option value="Prestige University, Survey No. 203, Ringnodiya Ujjain-Indore Road, Indore-453551 M.P">Prestige University, Survey No. 203, Ringnodiya Ujjain-Indore Road, Indore-453551 M.P</option>
+                    <option value="Professor Rajendra Singh (Rajju Bhayia) University(Formly Allahabad State University),CPI Hostel Campus, M G Marg, Civil Lines, Prayagraj – 211 001 (UP)">Professor Rajendra Singh (Rajju Bhayia) University(Formly Allahabad State University),CPI Hostel Campus, M G Marg, Civil Lines, Prayagraj – 211 001 (UP)</option>
+                    <option value="Rabindranath Tagore University (Formerly AISECT),Village : Mendua,Near Bangras ia Chouraha,Post. Bhojpur,District Raisan 464 993 (MP)">Rabindranath Tagore University (Formerly AISECT),Village : Mendua,Near Bangrasia Chouraha,Post. Bhojpur,District Raisan 464 993 (MP)</option>
+                    <option value="Raja Mahendra Pratap Singh State University, Aligarh-Palwal Road, Lodha, Uttar Pradesh-202140">Raja Mahendra Pratap Singh State University, Aligarh-Palwal Road, Lodha, Uttar Pradesh-202140</option>
+                    <option value="Raja Mansingh Tomar Music and Arts University,Needam Road,Naka Chandrabadni Chauraha,Achalreshwar Mandir Marg,Gwalior 474 002 (MP)">Raja Mansingh Tomar Music and Arts University,Needam Road,Naka Chandrabadni Chauraha,Achalreshwar Mandir Marg,Gwalior 474 002 (MP)</option>
+                    <option value="Raja Shankar Shah University, Chhindwara (Formerly Chhindwara University), P.G College Cmapus, Dharam Tekri, Chhindwara, Madhya Pradesh">Raja Shankar Shah University, Chhindwara (Formerly Chhindwara University), P.G College Cmapus, Dharam Tekri, Chhindwara, Madhya Pradesh</option>
+                    <option value="Rajiv Gandhi National Aviation University, Near Fursatgunj Air Field, Fursatgunj, Amethi, UP-229302">Rajiv Gandhi National Aviation University, Near Fursatgunj Air Field, Fursatgunj, Amethi, UP-229302</option>
+                    <option value="Rajiv Gandhi Proudyogiki Vishwavidyalaya,Airport Bypass Road, Gandhi Nagar,Bhopal">Rajiv Gandhi Proudyogiki Vishwavidyalaya,Airport Bypass Road, Gandhi Nagar,Bhopal</option>
+                    <option value="Rama University Uttar Pradesh,G T Road, Railway Crossing,Mandhana Station,Kanpur 209 217,(U P)">Rama University Uttar Pradesh,G T Road, Railway Crossing,Mandhana Station,Kanpur 209 217,(U P)</option>
+                    <option value="Rani Durgavati Vishwavidyalaya,Saraswati Vihar, Pachpedi,Jabalpur 482 001 (MP)">Rani Durgavati Vishwavidyalaya,Saraswati Vihar, Pachpedi,Jabalpur 482 001 (MP)</option>
+                    <option value="Renaissance University, Gram Reoti, Behind Aurobindo Hospital,Sanwe-Ujjain, Road, Indore (M.P)-452015">Renaissance University, Gram Reoti, Behind Aurobindo Hospital,Sanwe-Ujjain, Road, Indore (M.P)-452015</option>
+                    <option value="RKDF University,R G P V Campus, Airport Bypass Road,Gandhi Nagar ,Bhopal  462 033 (M P)">RKDF University,R G P V Campus, Airport Bypass Road,Gandhi Nagar ,Bhopal  462 033 (M P)</option>
+                    <option value="SAGE University,Kailod Kartal,Indore-Dewas Bypass Road,Rau,Indore,(MP) 452020">SAGE University,Kailod Kartal,Indore-Dewas Bypass Road,Rau,Indore,(MP) 452020</option>
+                    <option value="SAM Global University,Agariya Chopra, Bhopal Road Raisen-462021">SAM Global University,Agariya Chopra, Bhopal Road Raisen-462021</option>
+                    <option value="Sam Higginbottom University of Agriculture, Technology & Sciences (formerly Allahabad Agricultural Institute), PO : AAI, Rewa Road,Allahabad 211 007 (UP)">Sam Higginbottom University of Agriculture, Technology & Sciences (formerly Allahabad Agricultural Institute), PO : AAI, Rewa Road,Allahabad 211 007 (UP)</option>
+                    <option value="Sampurnanand Sanskrit Vishwavidyalya,Varanasi 221 002  (UP)">Sampurnanand Sanskrit Vishwavidyalya,Varanasi 221 002  (UP)</option>
+                    <option value="Sanchi University of Buddhist-Indic Studies,Barla Vidisha-Raisen Road (NH-86),Distict Raisen 464551 (MP)">Sanchi University of Buddhist-Indic Studies,Barla Vidisha -Raisen Road (NH-86),Distict Raisen 464551 (MP)</option>
+                    <option value="Sanjay Gandhi Postgraduate Institute of Medical Sciences,Rae-Bareilly Road,Lucknow 226 014 (UP)">Sanjay Gandhi Postgraduate Institute of Medical Sciences,Rae-Bareilly Road,Lucknow 226 014 (UP)</option>
+                    <option value="Sanjeev Agrawal Global Educational University, Sahara By Pass, Katara Extension, Bhopal, M.P">Sanjeev Agrawal Global Educational University, Sahara By Pass, Katara Extension, Bhopal, M.P</option>
+                    <option value="Sanskriti University, Mathura">Sanskriti University, Mathura</option>
+                    <option value="Sarvepalli Radhakrishnan University,NH-12, RKDF Ist Campus,Hoshangabad Road,Misrod,Bhopal 462 046 (MP)">Sarvepalli Radhakrishnan University,NH-12, RKDF Ist Campus,Hoshangabad Road,Misrod,Bhopal 462 046 (MP)</option>
+                    <option value="School of Planning and Architecture,Neelbad Road, Bhauri Campus,Bhopal 462 030,(MP)">School of Planning and Architecture,Neelbad Road, Bhauri Campus,Bhopal 462 030,(MP)</option>
+                    <option value="Scope Global Skills University, Scope Campus, NH-12 , Near Misrod, Village Bhaironpur, Hoshangabad Road, Bhaironpur, Bhopal, Madhya Pradesh-462026">Scope Global Skills University, Scope Campus, NH-12 , Near Misrod, Village Bhaironpur, Hoshangabad Road, Bhaironpur, Bhopal, Madhya Pradesh-462026</option>
+                    <option value="Sharda University,Plot No 32-34 ,Knowledge Park -3,Greater Noida -201 310 ,Dist. Gautam Budh Nagar (UP)">Sharda University,Plot No 32-34 ,Knowledge Park -3,Greater Noida -201 310 ,Dist. Gautam Budh Nagar (UP)</option>
+                    <option value="Shiv Nadar (Institution of Eminence Deemed to be University),NH-91, Tehsil Dadri,Gautam Buddha Nagar,(UP) 201 314">Shiv Nadar (Institution of Eminence Deemed to be University),NH-91, Tehsil Dadri,Gautam Buddha Nagar,(UP) 201 314</option>
+                    <option value="Shobhit Institute of Engineering & Technology,NH-58, Modipuram,PO : Modipuram,Meerut 250 110 (UP)">Shobhit Institute of Engineering & Technology,NH-58, Modipuram,PO : Modipuram,Meerut 250 110 (UP)</option>
+                    <option value="Shobhit University,Adarsh Institutional Area,Babu Vijendra marg,Gangoh 247 341,District Saharanpur (UP)">Shobhit University,Adarsh Institutional Area,Babu Vijendra marg,Gangoh 247 341,District Saharanpur (UP)</option>
+                    <option value="Shri Krishna University, Chhatarpur, Madhya Pradesh">Shri Krishna University, Chhatarpur, Madhya Pradesh</option>
+                    <option value="Shri Ramswaroop Memorial University,Village Hadauri, Post-Tindola,Lucknow-Deva Road,Barabanki,(UP) 225 003">Shri Ramswaroop Memorial University,Village Hadauri, Post-Tindola,Lucknow-Deva Road,Barabanki,(UP) 225 003</option>
+                    <option value="Shri Vaishnav Vidyapeeth,Shri Vaishnav Vidya Parisar,177 Jawahar Marg, South Rajmohalla,Indore- 452002, Madhya Pradesh">Shri Vaishnav Vidyapeeth,Shri Vaishnav Vidya Parisar,177 Jawahar Marg, South Rajmohalla,Indore- 452002, Madhya Pradesh</option>
+                    <option value="Shri Venkateswara University,Venkateshwara Nagar,NH-24, Gajraula, Dist Amroha,(UP) 244 236">Shri Venkateswara University,Venkateshwara Nagar,NH-24, Gajraula, Dist Amroha,(UP) 244 236</option>
+                    <option value="Siddharth University, Kapilvastu, Siddharth Nagar 272 202 (UP)">Siddharth University, Kapilvastu, Siddharth Nagar 272 202 (UP)</option>
+                    <option value="SKS International University, 21st Milestone, NH-2, Tehsil-Chhata, Mathura, Uttar Pradesh 281406">SKS International University, 21st Milestone, NH-2, Tehsil-Chhata, Mathura, Uttar Pradesh 281406</option>
+                    <option value="Sri Satya Sai University of Technology & Medical Sciences, SH-18, Bhopal -Indore Road,  Opposite Oilfed Plant Pachama,  Sehore 466001 (MP)">Sri Satya Sai University of Technology & Medical Sciences, SH-18, Bhopal -Indore Road,  Opposite Oilfed Plant Pachama,  Sehore 466001 (MP)</option>
+                    <option value="Swami Vivekanand Shubharti University,Subhartipuram, NH 58,Delhi -Haridwar Bypass Road ,Meerut - 250 005 (UP)">Swami Vivekanand Shubharti University,Subhartipuram, NH 58,Delhi -Haridwar Bypass Road ,Meerut - 250 005 (UP)</option>
+                    <option value="Swami Vivekanand University,NH 26, Narsinghpur Road,Sironja,Sagar 470 228 (MP)">Swami Vivekanand University,NH 26, Narsinghpur Road,Sironja,Sagar 470 228 (MP)</option>
+                    <option value="Symbiosis University of Applied Sciences, Indore,Bada Bangadda, Super Corridor, Indore - 453 112 (MP)">Symbiosis University of Applied Sciences, Indore,Bada Bangadda, Super Corridor, Indore - 453 112 (MP)</option>
+                    <option value="Teerthankar Mahaveer University,Delhi Road,(NH-24, Delhi Road),Moradabad  244 001 (UP)">Teerthankar Mahaveer University,Delhi Road,(NH-24, Delhi Road),Moradabad  244 001 (UP)</option>
+                    <option value="U P Rajarshi Tandon Open University, Shantipuram, Sector ‘F’,Phaphamau, Allahabad 211 021 (UP)">U P Rajarshi Tandon Open University, Shantipuram, Sector ‘F’,Phaphamau, Allahabad 211 021 (UP)</option>
+                    <option value="United University,Rawatpur,Jhalwa, Distt-Prayagraj, U.P- 211012">United University,Rawatpur,Jhalwa, Distt-Prayagraj, U.P- 211012</option>
+                    <option value="University of Allahabad,Senate House,University Road, Old Katra,Allahabad 211 002 (UP)">University of Allahabad,Senate House,University Road, Old Katra,Allahabad 211 002 (UP)</option>
+                    <option value="University of Lucknow, Lucknow 226 007 (UP)">University of Lucknow, Lucknow 226 007 (UP)</option>
+                    <option value="Veer Bahadur Singh Purvanchal University, Shahganj Road,Jaunpur 222 003  (UP)">Veer Bahadur Singh Purvanchal University, Shahganj Road,Jaunpur 222 003  (UP)</option>
+                    <option value="Vikram University,University Road,Ujjain 456 010  (MP)">Vikram University,University Road,Ujjain 456 010  (MP)</option>
+                    <option value="Vikrant University, Chittora Road, Ratwai, Gwalior, Madhya Pradesh-474006">Vikrant University, Chittora Road, Ratwai, Gwalior, Madhya Pradesh-474006</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="participants">Number of Participants(include Team Managers / Professional Accompanist)*</label>
+                <input type="number" id="participants" name="participants" required oninput="calculateFees()">
+            </div>
+
+            <div class="form-group">
+                <label for="Email">Email</label>
+                <input type="email" id="Email" name="Email" required>
+            </div>
+
+            <!-- Fees Calculation -->
+            <br>
+            <h3>For NEFT/RTGS</h2>
+            <h4>Bank Name: State Bank of India <br>
+                Branch: Sagar University <br>
+                Name: Coordinator, Cultural Council, DHSGSU Dr. Harisingh <br>
+                Gour University Sagar (MP)- 470003 <br>
+                Account No.: 41724180246 <br>
+                Ifsc Code: SBIN0001143</h4><br>
+                <h3>Fees Calculation</h3>
+
+                <div id="fees" style="border: 1px solid #ccc; padding: 10px; margin-top: 10px;">
+                    Total Fees: ₹0
+                </div>
+                <br>
+  
+                <div class="form-group">
+                <label for="Payment_Receipt">Upload Payment Receipt (NEFT/RTGS):*</label>
+                <input type="file" id="Payment_Receipt" name="Payment_Receipt" accept="image/*" required onchange="encodeImageFileAsURL(this)">
+            </div>
+
+            <input type="hidden" id="payment_receipt_base64" name="payment_receipt_base64" />
+
+            <div class="form-group">
+                <br>
+                <label for="paymentno">Payment UTR Number*</label>
+                <input type="number" id="paymentno" name="paymentno" required oninput="checkPaymentNo()">
+            </div>
+
+            <!-- Additional fields are disabled until payment number is entered -->
+            <h3>Consist of Team Members</h3>
+            <div class="team-members">
+                <div class="form-group">
+                    <label>Male Participants:*</label>
+                    <input type="number" name="male_participants" required disabled>
+                </div>
+                <div class="form-group">
+                    <label>Female Participants:*</label>
+                    <input type="number" name="female_participants" required disabled>
+                </div>
+                <div class="form-group">
+                    <label>Accompanists (Students + Professionals):*</label>
+                    <input type="number" name="accompanists" required disabled>
+                </div>
+                <div class="form-group">
+                    <label>Team Manager / Contingent In-charge:*</label>
+                    <input type="text" name="manager" required disabled>
+                </div>
+                <div class="form-group">
+                    <label>Total Composition of Contingent:*</label>
+                    <input type="number" name="total_contingent" required disabled>
+                </div>
+            </div>
+
+            <h3>Contact Information*</h3>
+            <div class="contact-info">
+                <div class="form-group">
+                    <label for="dean_contact">Dean, Student's Welfare (Name, Address, Phone, Email):</label>
+                    <textarea id="dean_contact" name="dean_contact" rows="3" required disabled></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="contingent_contact">Contingent In-charge (Name, Address, Phone, Email):*</label>
+                    <textarea id="contingent_contact" name="contingent_contact" rows="3" required disabled></textarea>
+                </div>
+            </div>
+
+            <h3>Travel Plans</h3>
+            <div class="form-group travel-info">
+                <label>Arrival at Doctor Harisingh Gour Vishwavidyalaya, Sagar, Madhya Pradesh:*</label>
+                <div class="travel-info">
+                    <input type="date" name="arrival_date" disabled>
+                    <input type="time" name="arrival_time" disabled>
+                </div>
+            </div>
+
+            <div class="form-group travel-info">
+                <label>Date of Departure:</label>
+                <div class="travel-info">
+                    <input type="date" name="departure_date" disabled>
+                    <input type="time" name="departure_time" disabled>
+                </div>
+            </div>
+
+            <h4>BUS / TRAIN</h4>
+            <div id="train-details">
+                <div class="form-group">
+                    <label>Arrival Train Name / Number:</label>
+                    <input type="text" name="train_arrival" >
+                </div>
+                <div class="form-group travel-info">
+                    <label>Arrival Date & Time:*</label>
+                    <div class="travel-info">
+                        <input type="date" name="train_arrival_date" disabled>
+                        <input type="time" name="train_arrival_time" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Departure Train Number:</label>
+                    <input type="text" name="train_departure">
+                </div>
+                <div class="form-group travel-info">
+                    <label>Departure Date & Time:*</label>
+                    <div class="travel-info">
+                        <input type="date" name="train_departure_date" disabled>
+                        <input type="time" name="train_departure_time" disabled>
+                    </div>
+                </div>
+            </div>    
+
+            <button type="submit" disabled>Submit</button>
+        </form>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loading-spinner">
+        <div></div>
+    </div>
+
+    <!-- Script for Google Sheets Integration -->
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbys-C05DYbCsQzyeo1JBKxRheHgr5nlN_ZiQ5n8K6DIzj0p7nxrWx6Pme7gBWYpGrZs/exec';
+        const form = document.forms['google-sheet'];
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            document.getElementById('loading-spinner').style.display = 'block';
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => {
+                    document.getElementById('loading-spinner').style.display = 'none';
+                    alert("Thank you for registering for the Youth Festival 2024...Please check your email for information.");
+                    window.location.href = 'index.html'; // Redirect to index.html after alert
+
+                })
+                .catch(error => {
+                    document.getElementById('loading-spinner').style.display = 'none';
+                    console.error('Error!', error.message);
+                });
+        });
+    </script>
+</body>
+</html>

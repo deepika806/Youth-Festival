@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events at a Glance</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Background and Font Styling */
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ffecd2, #fcb69f, #e74c3c);
+      color: #333;
+      animation: backgroundAnimation 10s infinite alternate;
+    }
+
+    @keyframes backgroundAnimation {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    /* Main Container Styling */
+    .container {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 1.5rem;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      animation: fadeIn 2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #e74c3c;
+      margin-bottom: 1.5rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      animation: bounce 2s ease infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Table Container for Responsiveness */
+    .table-container {
+      overflow-x: auto;
+      border-radius: 8px;
+    }
+
+    /* Table Styling */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.807);
+    }
+
+    /* Table Headers */
+    th {
+      background: linear-gradient(135deg, #3498db, #2ecc71);
+      color: #fff;
+      font-weight: bold;
+      padding: 1rem;
+      font-size: 1rem;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+      border-top: 1px solid #ddd;
+      transition: background 0.5s;
+    }
+
+    /* Table Data Cells */
+    td {
+      padding: 0.7rem;
+      font-size: 0.9rem;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: 200;
+      border: 1px solid #080808;
+      transition: background-color 0.3s ease, transform 0.3s;
+    }
+
+    /* Alternating Row Colors */
+    tbody tr:nth-child(odd) {
+      background-color: #f7f9fb;
+    }
+    tbody tr:nth-child(even) {
+      background-color: #ffffff;
+    }
+
+    /* Hover Effect on Table Rows */
+    tbody tr:hover {
+      background-color: #ffefdb;
+      transform: scale(1.01);
+    }
+
+    /* Category Header Styling */
+    .category {
+      background: #1029aa;
+      color: #230225;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: 800;
+      font-size: 6rem;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      
+    }
+
+    /* Note Styling */
+    .note {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #555;
+      background: rgba(230, 126, 34, 0.1);
+      padding: 0.5rem;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      animation: fadeInUp 2s;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <ul>
+        <li><a href="index.html">home</a></li>
+        <li><a href="schedule.html">Schedule</a></li>
+        <li><a href="event.html">Events</a></li>
+        <li><a href="sponsors.html">Sponsors</a></li>
+        <li><a href="message.html">Message</a></li>
+        <li><a href="invitation.html">Invitation</a></li>
+        <li><a href="rules.html">Regulations</a></li>
+        <li><a href="questions.html">FAQs</a></li>
+    </ul>
+</nav>
+
+  <div class="container">
+    <h1>Events at a Glance</h1>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th rowspan="2">Events</th>
+            <th rowspan="2">Participants</th>
+            <th rowspan="2">Accompanists</th>
+            <th rowspan="2">Total (P+A)</th>
+            <th colspan="2">Time (Minutes)</th>
+          </tr>
+          <tr>
+            <th>Minimum</th>
+            <th>Maximum</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="category"><td colspan="6"><h4>MUSIC</h4></td></tr>
+          <tr><td>Classical Vocal Solo (Hindustani/Karnatak)</td><td>1</td><td>2</td><td>3</td><td>8</td><td>10</td></tr>
+          <tr><td>Classical Instrumental Solo (Percussion)</td><td>1</td><td>2</td><td>3</td><td>8</td><td>10</td></tr>
+          <tr><td>Classical Instrumental Solo (Non-Percussion)</td><td>1</td><td>2</td><td>3</td><td>8</td><td>10</td></tr>
+          <tr><td>Light Vocal (Indian)*</td><td>1</td><td>2</td><td>3</td><td>4</td><td>6</td></tr>
+          <tr><td>Western Vocal (Solo)*</td><td>1</td><td>2</td><td>3</td><td>4</td><td>6</td></tr>
+          <tr><td>Group Song (Indian)</td><td>6</td><td>3</td><td>9</td><td>8</td><td>10</td></tr>
+          <tr><td>Group Song (Western)</td><td>6</td><td>3</td><td>9</td><td>8</td><td>10</td></tr>
+          <tr><td>Folk Orchestra</td><td>9</td><td>3</td><td>12</td><td>8</td><td>10</td></tr>
+          <tr><td>Western Instrumental (Solo)</td><td>1</td><td>2</td><td>3</td><td>6</td><td>8</td></tr>
+
+          <tr class="category"><td colspan="6"><h4>DANCE</h4></td></tr>
+          <tr><td>Folk/Tribal Dance</td><td>10</td><td>5</td><td>15</td><td>8</td><td>10</td></tr>
+          <tr><td>Classical Dance</td><td>1</td><td>3</td><td>4</td><td>12</td><td>15</td></tr>
+
+          <tr class="category"><td colspan="6"><h4>LITERARY EVENTS</h4></td></tr>
+          <tr><td>Quiz</td><td>3</td><td>-</td><td>3</td><td>--</td><td>--</td></tr>
+          <tr><td>Elocution*</td><td>1</td><td>-</td><td>1</td><td>4</td><td>5</td></tr>
+          <tr><td>Debate*</td><td>2</td><td>-</td><td>2</td><td>4</td><td>5</td></tr>
+
+          <tr class="category"><td colspan="6"><h4>THEATRE</h4></td></tr>
+          <tr><td>One Act Play</td><td>9</td><td>3</td><td>12</td><td>25</td><td>30</td></tr>
+          <tr><td>Skits</td><td>6</td><td>3</td><td>9</td><td>8</td><td>10</td></tr>
+          <tr><td>Mime</td><td>6</td><td>-</td><td>6</td><td>4</td><td>5</td></tr>
+          <tr><td>Mimicry*</td><td>1</td><td>-</td><td>1</td><td>4</td><td>5</td></tr>
+
+          <tr class="category"><td colspan="6"><h4>FINE ARTS</h4></td></tr>
+          <tr><td>On the spot painting</td><td>1</td><td>-</td><td>1</td><td>120</td><td>150</td></tr>
+          <tr><td>Collage</td><td>1</td><td>-</td><td>1</td><td>120</td><td>150</td></tr>
+          <tr><td>Poster Making</td><td>1</td><td>-</td><td>1</td><td>120</td><td>150</td></tr>
+          <tr><td>Clay Modelling</td><td>1</td><td>-</td><td>1</td><td>120</td><td>150</td></tr>
+          <tr><td>Cartooning</td><td>1</td><td>-</td><td>1</td><td>120</td><td>150</td></tr>
+          <tr><td>Rangoli</td><td>1</td><td>-</td><td>1</td><td>120</td><td>150</td></tr>
+          <tr><td>Spot Photography</td><td>1</td><td>-</td><td>1</td><td>120</td><td>150</td></tr>
+          <tr><td>Installation</td><td>1</td><td>-</td><td>1</td><td>120</td><td>150</td></tr>
+          <tr><td>Mehndi</td><td>1</td><td>-</td><td>1</td><td>120</td><td>150</td></tr>
+
+          <tr class="category"><td colspan="6"><h4>CULTURAL PROCESSION</h4></td></tr>
+          <tr><td>All</td><td>8</td><td>All</td><td>All</td><td>3-5 min performance</td><td>-</td></tr>
+        </tbody>
+      </table>
+      <p class="note">* Star marked events get 15 seconds grace time, while others get 30 seconds.</p>
+    </div>
+  </div>
+</body>
+</html>

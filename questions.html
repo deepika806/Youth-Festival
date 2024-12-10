@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FAQs - Utsav 2024</title>
+    <style>
+        html, body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(rgba(236, 228, 228, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('Img/Background.png') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+            min-height: 100vh;
+            cursor: none; /* Hide the default cursor */
+        }
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none; /* Allow clicks to pass through */
+        }
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            color: #ffffff;
+            font-size: 2.5em;
+            margin-top: 70px;
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
+            padding: 15px 25px;
+            background: linear-gradient(to right, #4CAF50, #009688);
+            border-radius: 10px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+        }
+        .faq-image {
+            width: 300px;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .faq-image:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.9);
+        }
+        .faq-container {
+            width: 90%;
+            max-width: 900px;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            margin-bottom: 40px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .faq-container:hover {
+            background-color: rgba(255, 255, 255, 1);
+            transform: scale(1.03);
+        }
+        .faq-item {
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .faq-item h3 {
+            color: #333;
+            cursor: pointer;
+            transition: color 0.3s, background-color 0.3s;
+            background-color: #fafafa;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 0;
+            font-size: 1.4em;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #4CAF50;
+            transition: all 0.3s ease;
+        }
+        .faq-item h3:hover {
+            color: #ffffff;
+            background: linear-gradient(to right, #4CAF50, #009688);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            transform: translateX(5px);
+        }
+        .faq-item p {
+            display: none;
+            color: #555;
+            padding: 15px 25px;
+            border-left: 5px solid #4CAF50;
+            margin: 0;
+            background-color: #f9f9f9;
+            border-radius: 0 10px 10px 10px;
+            animation: fadeIn 0.5s ease;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        .faq-item p.active {
+            display: block;
+        }
+        footer {
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            font-size: 0.9em;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            .faq-container {
+                padding: 20px;
+            }
+            .faq-item h3 {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="cursorCanvas"></canvas>
+    <img src="Img/logo.jpg" alt="Utsav 2024 Logo" class="logo">
+    <h1>Frequently Asked Questions</h1>
+    <img src="Img/images.jpg" alt="FAQs Image" class="faq-image">
+    <p style="font-size: 1.2em; text-align: center; max-width: 800px; color: #e0e0e0;">
+        Find answers to all your questions regarding the festival and registration.
+    </p>
+
+    <div class="faq-container">
+        <div class="faq-item">
+            <h3 onclick="toggleAnswer(this)">1. How do I register for Utsav 2024? <span>+</span></h3>
+            <p>To register, visit the official Utsav 2024 website and follow the instructions on the registration page. Make sure to fill out all the required information and submit the form before the deadline.</p>
+        </div>
+        <div class="faq-item">
+            <h3 onclick="toggleAnswer(this)">2. What is the last date to register? <span>+</span></h3>
+            <p>The last date to register for Utsav 2024 is 10th November, 2024. Please ensure that all your documents are ready and submitted by this date.</p>
+        </div>
+        <div class="faq-item">
+            <h3 onclick="toggleAnswer(this)">3. Is there a registration fee? <span>+</span></h3>
+            <p>Yes, there is a registration fee of Rs. 3000/- per participant. Payment can be made online through the official website.</p>
+        </div>
+        <div class="faq-item">
+            <h3 onclick="toggleAnswer(this)">4. What events will be held during the festival? <span>+</span></h3>
+            <p>The festival will feature events in categories such as music, dance, theatre, literature, and fine arts. The festival will be conducted from 26th-30th November 2024. Detailed schedules are available on the Utsav 2024 website.</p>
+        </div>
+        <div class="faq-item">
+            <h3 onclick="toggleAnswer(this)">5. Is there online registration for events? <span>+</span></h3>
+            <p>Yes, you need to get registered online in order to participate in the events of Gour Gourav Utsav. You can register for different events from here once registration starts.</p>
+        </div>
+    </div>
+
+    <footer>
+        &copy; Dr. Harisingh Gour University | Gour Utsav 2024
+    </footer>
+
+    <script>
+        function toggleAnswer(element) {
+            const answer = element.nextElementSibling;
+            answer.classList.toggle("active");
+
+            // Change the symbol
+            const symbol = element.querySelector("span");
+            symbol.textContent = symbol.textContent === "+" ? "-" : "+";
+        }
+
+        // Cursor with smooth trailing effect
+        const canvas = document.getElementById('cursorCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let cursorX = 0;
+        let cursorY = 0;
+        const tailLength = 15; // Number of tail segments
+        const tail = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        function drawCursor() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw tail with shadow
+            ctx.shadowColor = 'rgba(0, 0, 0, 0.5)'; // Shadow color
+            ctx.shadowBlur = 10; // Shadow blur
+            ctx.shadowOffsetX = 0; // Shadow horizontal offset
+            ctx.shadowOffsetY = 0; // Shadow vertical offset
+
+            ctx.beginPath();
+            for (let i = 0; i < tail.length; i++) {
+                ctx.lineTo(tail[i].x, tail[i].y);
+            }
+            ctx.strokeStyle = '#3C3D37'; // Tail color
+            ctx.lineWidth = 2; // Tail thickness
+            ctx.stroke();
+            
+            // Reset shadow for further drawing
+            ctx.shadowColor = 'transparent'; // Reset shadow
+
+            // Update tail
+            tail.push({ x: cursorX, y: cursorY });
+            if (tail.length > tailLength) tail.shift();
+        }
+
+        function updateCursor(event) {
+            cursorX = event.clientX;
+            cursorY = event.clientY;
+        }
+
+        window.addEventListener('mousemove', (event) => {
+            updateCursor(event);
+            drawCursor();
+        });
+
+        // Keep drawing the cursor even when not moving
+        setInterval(() => {
+            drawCursor();
+        }, 10); // Redraw every 100 ms
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+    </script>
+</body>
+</html>

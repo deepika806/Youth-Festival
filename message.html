@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hover to Expand Image Gallery</title>
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Background and Body Styling */
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient( rgb(145, 152, 164) 25%, rgb(75, 224, 167) 50% 50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    /* Layout Container */
+    .gallery-wrapper {
+      display: flex;
+      gap: 90px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Name and Circle Gallery Container */
+    .circle-gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 35px;
+      align-items: flex-start;
+    }
+
+    /* Name and Circular Image Container Styling */
+    .container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      cursor: pointer;
+    }
+
+    .container span {
+      font-size: 16px;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .circle {
+      width: 80px;
+      height: 80px;
+      overflow: hidden;
+      border-radius: 50%;
+      box-shadow: 0px 4px 15px rgba(66, 24, 24, 0.912);
+      background-color: #ffffff;
+      position: relative;
+    }
+
+    .circle img {
+      width: 100%;
+      height: 120%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    /* Hover Effect on Circle Image */
+    .circle:hover img {
+      transform: scale(1.2); /* Slight zoom on hover */
+    }
+
+    /* Large Text Display Area */
+    .display-container {
+      width: 580px;
+      height: 700px;
+      overflow-y: auto;
+      background-color: #ffffff;
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+      padding: 20px;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 14px;
+      font-weight: 400;
+      border-radius: 10%;
+      color: #333;
+      text-align: left;
+      transition: opacity 0.3s ease;
+      line-height: 1.6;
+    }
+    .display-container h2 {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 10px;
+    }
+    .display-container p {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Gallery Wrapper -->
+  <div class="gallery-wrapper">
+    <!-- Circle Image Gallery with Names -->
+    <div class="circle-gallery">
+      <!-- Container 1 -->
+      <div class="container" onmouseover="showText('Honorable Chancellor')">
+        <div class="circle">
+          <img src="Img/1001.jpg" alt="Image 1">
+        </div>
+        <span>Honorable Chancellor</span>
+      </div>
+
+      <!-- Container 2 -->
+      <div class="container" onmouseover="showText('Vice Chancellor')">
+        <div class="circle">
+          <img src="Img/1002.jpg" alt="Image 2">
+        </div>
+        <span>Vice Chancellor</span>
+      </div>
+
+      <!-- Container 3 -->
+      <div class="container" onmouseover="showText('President AIU')">
+        <div class="circle">
+          <img src="Img\1003.jpg" alt="Image 3">
+        </div>
+        <span>President AIU</span>
+      </div>
+
+      <!-- Container 4 -->
+      <div class="container" onmouseover="showText('Secretary General AIU')">
+        <div class="circle">
+          <img src="Img\1004.jpg" alt="Image 4">
+        </div>
+        <span>Secretary General AIU</span>
+      </div>
+
+      <!-- Container 5 -->
+      <div class="container" onmouseover="showText('Additional Secretary AIU')">
+        <div class="circle">
+          <img src="Img\1005.jpg" alt="Image 5">
+        </div>
+        <span>Additional Secretary AIU</span>
+      </div>
+
+      <!-- Container 6 -->
+      <div class="container" onmouseover="showText('Dean Student Affairs')">
+        <div class="circle">
+          <img src="Img\1006.jpg" alt="Image 6">
+        </div>
+        <span>Dean Student Affairs</span>
+      </div>
+    </div>
+
+    <!-- Large Text Display Area -->
+    <div class="display-container" id="displayContainer">
+      <h2 id="displayTitle">Hover over a circle to see details here</h2>
+      <div id="displayText"></div>
+    </div>
+  </div>
+
+  <script>
+    const messages = {
+      "Honorable Chancellor": [
+        "I am extremely happy that the Association of Indian Universities (AIU), New Delhi",
+"has entrusted Doctor Harisingh Gour Vishwavidiyalaya. Sagar (M.P.), for hosting 38th AIU",
+"Inter-University Central Zone Youth Festival 2024 during November 26 - 30, 2024.",
+"I am sure that the festival will create a great impact in its participants as it focuses on",
+"cultural aspects and a number of other programmes covering a wide variety of activities,",
+"which not only reflects the spirit of friendship but also paves way for nurturing peace and",
+"good networking. Besides all this, the festival also provides a wide exposure to the youth for",
+"expressing and fulfilling their cultural talents and aspirations. Such opportunities go a long",
+"way in enhancing the all-round growth and development of young talented individuals and",
+"will also inspire its observers in many ways.",
+"I wish the 38th AIU Inter-University Central Zone Youth Festival 2024 a grand success.",
+"Kanhaiya Lal Berwal",
+      ],
+      "Vice Chancellor": [
+      "Greetings from Doctor Harisingh Gour Vishwavidyalaya, Sagar (M.P.),At present, India has the largest youth population in the world. According to United Nation Population Fund (UNPF) projections, India will continue to have one of the youngest populations in the world till 2030. India is experiencing three demographic windows of opportunity, a 'youth bulge' that will last till 2025.",
+      "Every third person in an Indian city is in the age group of 21-30. The time has arrived for the young population to be inspired, motivated, and empowered to break age-old stereotypes, myths, outdated customs, and conventions.",
+      "It is time to propel the youth to steer the nation into an era of awareness, equality, spirit of tolerance, modern entrepreneurship, collective policy-making, connected societies, ethical politics, and honest ways of living.",
+      "National policy missions such as 'Skill India,’ 'Digital India,' 'Make in India,' and 'Swachh Bharat' need to be adopted and implemented by the youth, particularly students, to participate in National Development and empowerment.",
+      "Doctor Harisingh Gour Vishwavidyalaya stood the test of time while contributing to the field of academics, research, collaborations, patents, co-curricular activities, and sports. The Faculty members of the university have always channelized the energies of the young students into creative activities and engaged them in the noble cause of fighting against poverty, ignorance, illiteracy, corruption, intolerance, and fundamentalism.",
+      "I congratulate all stakeholders of the University for working as a guide, guardian, and mentor of the student community of this university to inspire, motivate, and empower them to shape a niche for themselves and play a constructive role in national development.",
+      "<b>Col. Prof. Neelima Gupta</b><br>Vice – Chancellor"
+    ],
+    "President AIU": [
+      "Greetings from AIU!",
+      "Youth Festivals serve as a vibrant platform for the expression of creativity, talent, and innovation among our young minds. It is a time when the energy and enthusiasm of the youth take center stage, showcasing the incredible potential that resides within each of you. This festival is not merely an event; it is a testament to the vitality and dynamism that characterize our young student community.",
+      "AIU has been annually organizing the Inter-University Youth Festivals (UNIFESTs) at the zonal and national levels, where a large number of youth artists from member universities and affiliated colleges participate.",
+      "It provides an opportunity to celebrate this diversity, fostering a sense of unity and understanding among students from various backgrounds. The festival offers a stage for the youth to showcase their skills, encouraging a culture of appreciation and support for one another’s unique abilities.",
+      "This year, the AIU 38th Inter-University Central Zone Youth Festival was bagged by Dr. Harisingh Gour Vishwavidyalaya, M.P. I encourage every one of the participants to actively participate in the Youth Festival. Embrace the spirit of collaboration, support your fellow students, and take pride in being part of a community that values creativity, diversity, and growth.",
+      "I send herewith my congratulations to the Vice Chancellor, and best wishes to staff, volunteers of the Host University and participants from the Central Zone universities. I wish you all a joyful and successful Youth Festival!",
+      "<b>(Prof. Vinay Kumar Pathak)</b><br>President, AIU"
+    ],
+    "Secretary General AIU": [
+    "It gives me immense pleasure to extend my warm greetings and congratulations to Dr. Harisingh Gour Vishwavidyalaya, Sagar, Madhya Pradesh, for hosting the 38th AIU Inter-University Central Zone Youth Festival from 26th to 30th November 2024.",
+    "AIU believes that supporting and promoting the development of students must be one of the foremost priorities, across all sectors and stakeholders, of this vibrant nation.",
+    "This significant event not only celebrates the vibrant talent of our youth but also promotes cultural unity and creative expression.",
+    "Hosting such a grand festival is a testament to the university's commitment to nurturing young minds and providing them with a platform to showcase their abilities in diverse fields such as music, dance, drama, fine arts, and literature.",
+    "Your efforts to bring together students from universities across the region will undoubtedly foster an environment of learning, collaboration, and cultural exchange, contributing to the holistic development of youth.",
+    "It is a moment of pride and honor for the entire academic and cultural community.",
+    "Wishing you great success in organizing this event and best wishes to the Vice Chancellor, staff, volunteers of the host university, and all the participants!",
+    "May the festival be filled with joy, creativity, and unforgettable memories.",
+    "Pankaj Mittal"
+  ],
+      "Additional Secretary AIU": [
+      "I am glad that the 38th AIU Inter-Universities Central Zone Youth Festival is going to be organized by Dr. Harisingh Gour Vishwavidyalaya, M.P., from 26-30 November, 2024.",
+    "I trust the UNIFEST would offer an occasion to our university youth for a healthy interaction and enhance their faculty for social, cultural, and aesthetic pursuits.",
+    "Further, the event would help to inculcate a spirit of unity, fraternity, peace, and leadership qualities amongst the youth.",
+    "A large number of university youth from the universities participates in the festival, which plays a vital role in inheriting in our youth the much-required human and cultural values.",
+    "On this occasion, I send herewith my heartiest best wishes to the host university and participants from various universities.",
+    "Dr. Mamta Rani Agarwal"
+      ],
+      "Dean Student Affairs": [
+      "We are glad to inform you that the Association of Indian Universities (AIU), New Delhi has entrusted Doctor Harisingh Gour Vishwavidyalaya, Sagar (M.P.) with the opportunity to host the 38th AIU Inter University Central Zone Youth Festival, scheduled to take place from 26th to 30th November 2024.",
+    "We cordially invite you to participate in this great event, which will showcase a rich tapestry of cultural and artistic expressions at various venues.",
+    "Events spanning Theatre, Literary, Fine Arts, and more have been meticulously scheduled to provide a platform for talented students to showcase their skills and promote cultural exchange.",
+    "The festival aims to nurture conscientious young leaders, instilling in them a strong national character and high cultural and moral values.",
+    "We believe that your active participation will contribute significantly to the success of this event.",
+    "To ensure a smooth organization of the festival, we kindly request your early registration.",
+    "Your cooperation is crucial in making this Inter University Central Zone Youth Festival a memorable and phenomenal event.",
+    "Our team is enthusiastic and fully prepared to extend a warm welcome to all participants.",
+    "We are confident that your involvement will add value to the cultural mosaic.",
+    "We eagerly anticipate your overwhelming participation, and sincerely thank you for your cooperation in making this program a grand success.",
+    "A.D. Sharma"
+      ]
+    };
+
+    function showText(role) {
+      const displayTitle = document.getElementById('displayTitle');
+      const displayText = document.getElementById('displayText');
+      displayTitle.innerText = role;
+      displayText.innerHTML = messages[role].map(paragraph => `<p>${paragraph}</p>`).join("");
+    }
+  </script>
+
+</body>
+</html>
